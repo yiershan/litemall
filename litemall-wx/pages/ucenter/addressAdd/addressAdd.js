@@ -262,7 +262,6 @@ Page({
     wx.navigateBack();
   },
   saveAddress(){
-    console.log(this.data.address)
     let address = this.data.address;
 
     if (address.name == '') {

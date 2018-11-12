@@ -1,5 +1,8 @@
 package org.linlinjava.litemall.admin.web;
 
+import io.swagger.annotations.ApiImplicitParam;
+import io.swagger.annotations.ApiImplicitParams;
+import io.swagger.annotations.ApiOperation;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.linlinjava.litemall.admin.annotation.LoginAdmin;
@@ -27,7 +30,7 @@ public class AdminAdController {
 
     @Autowired
     private LitemallAdService adService;
-
+    @ApiOperation(value = "获取广告列表", notes = "获取广告列表分页数据")
     @GetMapping("/list")
     public Object list(@LoginAdmin Integer adminId,
                        String name, String content,
@@ -59,7 +62,8 @@ public class AdminAdController {
         }
         return null;
     }
-
+    @ApiOperation(value = "创建一则广告",notes = "通过调用此方法可以创建一则广告")
+    @ApiImplicitParam(name = "adminId", value = "登陆用户id", required = true, dataType = "Integer")
     @PostMapping("/create")
     public Object create(@LoginAdmin Integer adminId, @RequestBody LitemallAd ad){
         if(adminId == null){
